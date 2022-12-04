@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledRegisterPage = styled.div`
-    width: 100%;
+    width: 90%;
     max-width: 369px;
     display: flex;
     flex-direction: column;
@@ -14,17 +14,27 @@ export const StyledRegisterPage = styled.div`
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0 1.25rem;
         margin-bottom: 1.938rem;
+        margin-top: 3.094rem;
     }
 
     header > img {
         height: 14px;
     }
 
+    p {
+        color: var(--color-gray-1);
+        font-size: 0.599rem;
+        font-weight: 400;
+    }
+
     @media (min-width: 960px) {
         img {
             height: 20px;
+        }
+
+        p {
+            font-size: 0.75rem;
         }
     }
 `
