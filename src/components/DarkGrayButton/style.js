@@ -11,6 +11,10 @@ export const StyledDarkGrayButton = styled.button`
     font-size: 0.625rem;
     font-weight: 600;
 
+    :hover {
+        background-color: var(--color-gray-2);
+    }
+
     @media (min-width: 960px) {
         font-size: 0.75rem;
     }
