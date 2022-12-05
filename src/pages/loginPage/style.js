@@ -25,6 +25,12 @@ export const StyledLoginPage = styled.div`
         line-height: 18px;
         margin-bottom: 1.375rem;
     }
+    
+    p {
+        color: var(--color-gray-1);
+        font-size: 0.599rem;
+        font-weight: 400;
+    }
 
     @media (min-width: 960px) {
         img {

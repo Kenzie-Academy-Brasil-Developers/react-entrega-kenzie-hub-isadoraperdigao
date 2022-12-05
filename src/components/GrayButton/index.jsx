@@ -1,7 +1,7 @@
 import { StyledGrayButton } from "./style"
 
-export const GrayButton = ({text}) => {
+export const GrayButton = ({text, action}) => {
     return (
-        <StyledGrayButton>{text}</StyledGrayButton>
+        <StyledGrayButton onClick={action}>{text}</StyledGrayButton>
     )
 }

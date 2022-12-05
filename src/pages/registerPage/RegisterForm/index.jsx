@@ -12,7 +12,8 @@ import { useNavigate } from "react-router-dom"
 
 export const RegisterForm = () => {
     const {register, handleSubmit, formState: {errors}} = useForm({
-        resolver: yupResolver(registerSchema)
+        resolver: yupResolver(registerSchema),
+        mode: "onBlur",
     })
 
     const navigate = useNavigate()
@@ -20,11 +21,11 @@ export const RegisterForm = () => {
     const userRegister = async (formData) => {
         try {
             const response = await api.post('users', formData);
-            //toast.success(response.data.message)
+            toast.success(response.data.message)
             navigate("/")
             console.log("success!")
         } catch (error) {
-           // toast.error(error.response.data.message)
+            toast.error(error.response.data.message)
             console.log(error.response.data.message)
         } 
       }

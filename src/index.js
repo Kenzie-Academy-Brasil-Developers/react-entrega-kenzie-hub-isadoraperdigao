@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import { Reset } from './styles/reset/style';
 import { GlobalStyle } from './styles/globalStyles/style';
 import { BrowserRouter } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,6 +15,18 @@ root.render(
     <BrowserRouter>
       <Reset />
       <GlobalStyle/>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <App />
     </BrowserRouter>
   </React.StrictMode>

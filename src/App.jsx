@@ -1,7 +1,6 @@
 import { DashboardPage } from './pages/dashboardPage';
 import { LoginPage } from './pages/loginPage';
 import { RegisterPage } from './pages/registerPage';
-import {  ToastContainer } from "react-toastify";
 import { Route, Routes } from 'react-router-dom';
 
 function App() {
