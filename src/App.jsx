@@ -1,13 +1,16 @@
-import './App.css';
 import { DashboardPage } from './pages/dashboardPage';
 import { LoginPage } from './pages/loginPage';
 import { RegisterPage } from './pages/registerPage';
+import {  ToastContainer } from "react-toastify";
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
-    <div className='App'>
-      <RegisterPage/>
-    </div>
+    <Routes>
+      <Route index element={<LoginPage />} />
+      <Route path='register' element={<RegisterPage />} />
+      <Route path='dashboard/:name' element={<DashboardPage />} />
+    </Routes>
   );
 }
 
