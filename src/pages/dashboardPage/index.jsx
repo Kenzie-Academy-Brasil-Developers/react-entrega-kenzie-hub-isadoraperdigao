@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { api } from "../../api/api"
 import Logo from "../../assets/img/Logo.svg"
 import { DarkGrayButton } from "../../components/DarkGrayButton"
@@ -11,8 +11,6 @@ export const DashboardPage = () => {
     let userId = window.localStorage.getItem("@USERID")
     
     const [user, setUser] = useState(null)
-    
-    const navigate = useNavigate()
 
     useEffect(() => {
         api.get(`users/${userId}`).then((response) =>{
@@ -22,8 +20,7 @@ export const DashboardPage = () => {
 
     const backToLoginAction = () => {
         window.localStorage.removeItem("@TOKEN")
-        window.localStorage.removeItem("@USERID")
-        navigate("/")
+        window.localStorage.removeItem("@USERID")   
     }
 
     if (user) {
@@ -31,7 +28,9 @@ export const DashboardPage = () => {
             <StyledDashboardPage>
                 <StyledDashboardHeader>
                     <img src={Logo} alt="Kenzie Hub Logo" />
-                    <DarkGrayButton text="Sair" width="two" action={backToLoginAction}/>
+                    <Link to={"/"}>
+                        <DarkGrayButton text="Sair" width="two" action={backToLoginAction}/>
+                    </Link>
                 </StyledDashboardHeader>
                 <StyledUserCard>
                     <StyledDashboardContentContainer>
