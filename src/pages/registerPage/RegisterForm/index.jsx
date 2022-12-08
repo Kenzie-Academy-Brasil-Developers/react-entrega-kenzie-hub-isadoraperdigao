@@ -23,7 +23,6 @@ export const RegisterForm = () => {
             const response = await api.post('users', formData);
             toast.success(response.data.message)
             navigate("/")
-            console.log("success!")
         } catch (error) {
             toast.error(error.response.data.message)
             console.log(error.response.data.message)
