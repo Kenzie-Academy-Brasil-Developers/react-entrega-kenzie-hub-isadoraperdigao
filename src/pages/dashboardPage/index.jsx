@@ -1,16 +1,17 @@
 import { useEffect } from "react"
-import { useState } from "react"
+import { useContext } from "react"
 import { Link } from "react-router-dom"
 import { api } from "../../api/api"
 import Logo from "../../assets/img/Logo.svg"
 import { DarkGrayButton } from "../../components/DarkGrayButton"
+import { UserContext } from "../../contexts/UserContext"
 import { StyledTitle } from "../../styles/typography/style"
 import { StyledDashboardContentContainer, StyledDashboardHeader, StyledDashboardPage, StyledUserCard } from "./style"
 
 export const DashboardPage = () => {
     let userId = window.localStorage.getItem("@USERID")
     
-    const [user, setUser] = useState(null)
+    const {user, setUser} = useContext(UserContext)
 
     useEffect(() => {
         api.get(`users/${userId}`).then((response) =>{
