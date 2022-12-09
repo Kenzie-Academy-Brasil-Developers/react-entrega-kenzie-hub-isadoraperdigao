@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useContext } from "react"
-import { Link } from "react-router-dom"
+import { Link, Navigate } from "react-router-dom"
 import { api } from "../../api/api"
 import Logo from "../../assets/img/Logo.svg"
 import { DarkGrayButton } from "../../components/DarkGrayButton"
@@ -9,19 +9,15 @@ import { StyledTitle } from "../../styles/typography/style"
 import { StyledDashboardContentContainer, StyledDashboardHeader, StyledDashboardPage, StyledUserCard } from "./style"
 
 export const DashboardPage = () => {
-    let userId = window.localStorage.getItem("@USERID")
-    
-    const {user, setUser} = useContext(UserContext)
-
-    useEffect(() => {
-        api.get(`users/${userId}`).then((response) =>{
-            setUser(response.data)
-        })
-    }, [])
+    const {user, loading} = useContext(UserContext)
 
     const backToLoginAction = () => {
         window.localStorage.removeItem("@TOKEN")
         window.localStorage.removeItem("@USERID")   
+    }
+
+    if(loading) {
+        return null
     }
 
     if (user) {
@@ -47,9 +43,8 @@ export const DashboardPage = () => {
                 </StyledDashboardContentContainer>
             </StyledDashboardPage>
         )
-
-        
+    } else {
+        return <Navigate to={"/"} />
     }
 
-    return <StyledTitle>Carregando...</StyledTitle>
 }
