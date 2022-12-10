@@ -4,17 +4,16 @@ import { Link, Navigate } from "react-router-dom"
 import { api } from "../../api/api"
 import Logo from "../../assets/img/Logo.svg"
 import { DarkGrayButton } from "../../components/DarkGrayButton"
+import { TechList } from "../../components/TechList"
+import { TechListHeader } from "../../components/TechListHeader"
 import { UserContext } from "../../contexts/UserContext"
 import { StyledTitle } from "../../styles/typography/style"
 import { StyledDashboardContentContainer, StyledDashboardHeader, StyledDashboardPage, StyledUserCard } from "./style"
 
 export const DashboardPage = () => {
-    const {user, loading} = useContext(UserContext)
+    const {user, loading, backToLoginAction} = useContext(UserContext)
 
-    const backToLoginAction = () => {
-        window.localStorage.removeItem("@TOKEN")
-        window.localStorage.removeItem("@USERID")   
-    }
+  
 
     if(loading) {
         return null
@@ -36,10 +35,8 @@ export const DashboardPage = () => {
                     </StyledDashboardContentContainer>
                 </StyledUserCard>
                 <StyledDashboardContentContainer>
-                    <div>
-                        <StyledTitle fontSize="two">Que pena! Estamos em desenvolvimento</StyledTitle>
-                        <p>Nossa aplicação está em desenvolvimento, em breve teremos novidades</p>
-                    </div>
+                    <TechListHeader />
+                    <TechList />
                 </StyledDashboardContentContainer>
             </StyledDashboardPage>
         )
