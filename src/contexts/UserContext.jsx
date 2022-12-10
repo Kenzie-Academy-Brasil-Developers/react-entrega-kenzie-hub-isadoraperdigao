@@ -59,7 +59,7 @@ export const UserProvider = ({children}) => {
             const {token, user: userResponse} = responseLogin.data
             
             setUser(userResponse)
-            console.log(responseLogin.data)
+            api.defaults.headers.common.authorization = `Bearer ${token}`
 
             toast.success(responseLogin.data.message)
 
@@ -73,8 +73,14 @@ export const UserProvider = ({children}) => {
         }
     }
 
+    const backToLoginAction = () => {
+        window.localStorage.removeItem("@TOKEN")
+        window.localStorage.removeItem("@USERID")   
+        setUser(null)
+    }
+
     return (
-        <UserContext.Provider value={{user, setUser, userRegister, userLogin, loading, token}}>
+        <UserContext.Provider value={{user, setUser, userRegister, userLogin, loading, token, backToLoginAction}}>
             {children}
         </UserContext.Provider>
     )
