@@ -9,4 +9,8 @@ export const StyledTechList = styled.ul`
     background-color: var(--color-gray-3);
     list-style: none;
     border-radius: 4px;
+
+@media (min-width: 960px) {
+    padding: 1.5em;
+}
 `

@@ -1,24 +1,30 @@
+import { useContext } from "react"
+import { useForm } from "react-hook-form"
+import { TechContext } from "../../contexts/TechContext"
+import { StyledTechModal } from "../../styles/container/modalContainer/style"
 import { StyledTitle } from "../../styles/typography/style"
+import { BrandButton } from "../brandButton"
 import { FormInput } from "../FormInput"
-import { StyledAddTechModal, StyledModalBox } from "./style"
+import { FormSelect } from "../FormSelect"
+import { StyledAddModalBox } from "./style"
 
 export const AddTechModal = () => {
-    return (
-        <StyledAddTechModal>
-            <StyledModalBox>
+    const {showModal, closeModal, addTechToList} = useContext(TechContext)
+    const {register, handleSubmit} = useForm()
+
+    return showModal && (
+        <StyledTechModal>
+            <StyledAddModalBox>
                 <header>
                     <StyledTitle fontSize="three">Cadastrar tecnologia</StyledTitle>
-                    <button>X</button>
+                    <button onClick={closeModal}>X</button>
                 </header>
-                <form>
-                    <FormInput label="Nome" placeholder="Typescript" type="text" id="techName" />
-                    <select name="techStatus" id="techStatus">
-                        <option value="Iniciante">Iniciante</option>
-                        <option value="Intermediário">Intermediário</option>
-                        <option value="Avançado">Avançado</option>
-                    </select>
+                <form onSubmit={handleSubmit(addTechToList)}>
+                    <FormInput label="Nome" placeholder="Typescript" type="text" id="title" register={register("title")}/>
+                    <FormSelect label="Selecionar status" id="status" register={register("status")}/>
+                    <BrandButton text="Cadastrar tecnologia" type="submit"/>
                 </form>
-            </StyledModalBox>
-        </StyledAddTechModal>
+            </StyledAddModalBox>
+        </StyledTechModal>
     )
 }

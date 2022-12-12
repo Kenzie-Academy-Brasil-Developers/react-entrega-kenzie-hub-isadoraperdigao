@@ -5,9 +5,11 @@ export const StyledTechItem = styled.li`
     padding: 0.75em;
     display: flex;
     gap: 1rem;
+    align-items: center;
     justify-content: space-between;
     background-color: var(--color-gray-4);
     border-radius: 4px;
+    cursor: pointer;
 
     p {
         font-size: 0.875rem;
@@ -23,6 +25,8 @@ export const StyledTechItem = styled.li`
 
     img {
         display: none;
+        height: 12px;
+        
     }
 
     @media (min-width: 960px) {
