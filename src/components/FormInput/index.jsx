@@ -1,9 +1,10 @@
 import { StyledFormInput, StyledLabel } from "./style"
 
-export const FormInput = ({label, placeholder, type, id, register}) => {
+export const FormInput = ({label, placeholder, type, id, register, defaultValue, disabled}) => {
+
     return (
         <StyledLabel htmlFor={label}>{label}
-            <StyledFormInput placeholder={placeholder} type={type} id={id} {...register} />
+            <StyledFormInput disabled={disabled ? true : null} placeholder={placeholder} type={type} id={id} {...register} defaultValue={defaultValue} />
         </StyledLabel>
     )
 }

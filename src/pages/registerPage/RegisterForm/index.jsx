@@ -6,9 +6,8 @@ import { StyledLabel } from "../../../components/FormInput/style"
 import { StyledFormContainer } from "../../../styles/formContainer/style"
 import { StyledSelect } from "./style"
 import { registerSchema } from "./registerSchema"
-import { api } from "../../../api/api.js"
-import { toast } from 'react-toastify'
-import { useNavigate } from "react-router-dom"
+import { useContext } from "react"
+import { UserContext } from "../../../contexts/UserContext"
 
 export const RegisterForm = () => {
     const {register, handleSubmit, formState: {errors}} = useForm({
@@ -16,18 +15,7 @@ export const RegisterForm = () => {
         mode: "onBlur",
     })
 
-    const navigate = useNavigate()
-
-    const userRegister = async (formData) => {
-        try {
-            const response = await api.post('users', formData);
-            toast.success(response.data.message)
-            navigate("/")
-        } catch (error) {
-            toast.error(error.response.data.message)
-            console.log(error.response.data.message)
-        } 
-      }
+    const {userRegister} = useContext(UserContext)
 
     const submitFunction = (data) => {
         const dataToPost = {

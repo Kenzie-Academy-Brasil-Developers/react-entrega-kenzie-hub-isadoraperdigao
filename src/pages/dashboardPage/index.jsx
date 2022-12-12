@@ -1,26 +1,22 @@
 import { useEffect } from "react"
-import { useState } from "react"
-import { Link } from "react-router-dom"
+import { useContext } from "react"
+import { Link, Navigate } from "react-router-dom"
 import { api } from "../../api/api"
 import Logo from "../../assets/img/Logo.svg"
+import { AddTechModal } from "../../components/AddTechModal"
 import { DarkGrayButton } from "../../components/DarkGrayButton"
+import { EditTechModal } from "../../components/EditTechModal"
+import { TechList } from "../../components/TechList"
+import { TechListHeader } from "../../components/TechListHeader"
+import { UserContext } from "../../contexts/UserContext"
 import { StyledTitle } from "../../styles/typography/style"
-import { StyledDashboardContentContainer, StyledDashboardHeader, StyledDashboardPage, StyledUserCard } from "./style"
+import { StyledDashboardContentContainer, StyledDashboardHeader, StyledDashboardPage, StyledDashboardUserContentContainer, StyledUserCard } from "./style"
 
 export const DashboardPage = () => {
-    let userId = window.localStorage.getItem("@USERID")
-    
-    const [user, setUser] = useState(null)
+    const {user, loading, backToLoginAction} = useContext(UserContext)
 
-    useEffect(() => {
-        api.get(`users/${userId}`).then((response) =>{
-            setUser(response.data)
-        })
-    }, [])
-
-    const backToLoginAction = () => {
-        window.localStorage.removeItem("@TOKEN")
-        window.localStorage.removeItem("@USERID")   
+    if(loading) {
+        return null
     }
 
     if (user) {
@@ -33,22 +29,21 @@ export const DashboardPage = () => {
                     </Link>
                 </StyledDashboardHeader>
                 <StyledUserCard>
-                    <StyledDashboardContentContainer>
+                    <StyledDashboardUserContentContainer>
                         <StyledTitle fontSize="two">Olá, {user.name}</StyledTitle>
                         <span>{user.course_module}</span>
-                    </StyledDashboardContentContainer>
+                    </StyledDashboardUserContentContainer>
                 </StyledUserCard>
                 <StyledDashboardContentContainer>
-                    <div>
-                        <StyledTitle fontSize="two">Que pena! Estamos em desenvolvimento</StyledTitle>
-                        <p>Nossa aplicação está em desenvolvimento, em breve teremos novidades</p>
-                    </div>
+                    <TechListHeader />
+                    <TechList />
                 </StyledDashboardContentContainer>
+                <AddTechModal />
+                <EditTechModal />
             </StyledDashboardPage>
         )
-
-        
+    } else {
+        return <Navigate to={"/"} />
     }
 
-    return <StyledTitle>Carregando...</StyledTitle>
 }

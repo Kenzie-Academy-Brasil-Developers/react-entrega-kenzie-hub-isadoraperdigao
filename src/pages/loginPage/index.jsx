@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, Navigate } from "react-router-dom"
 import Logo from "../../assets/img/Logo.svg"
 import { GrayButton } from "../../components/GrayButton"
 import { StyledContainer } from "../../styles/container/style"
@@ -7,7 +7,7 @@ import { LoginForm } from "./LoginForm"
 import { StyledLoginPage } from "./style"
 
 export const LoginPage = () => {
-
+    
     return (
         <StyledLoginPage>
             <img src={Logo} alt="Logo Kenzie Hub" />
@@ -24,4 +24,5 @@ export const LoginPage = () => {
 
         </StyledLoginPage>
     )
+
 }

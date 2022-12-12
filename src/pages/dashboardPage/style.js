@@ -17,41 +17,28 @@ export const StyledDashboardHeader = styled.header`
     align-items: center;  
     margin-top: 1.75rem;
 `
+export const StyledDashboardUserContentContainer = styled.div`
+     width: 90%;
+    max-width: 960px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25em;
+    margin-top: 1.25em;
+
+    @media (min-width: 960px) {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+`
 
 export const StyledDashboardContentContainer = styled.div`
     width: 90%;
     max-width: 960px;
     display: flex;
     flex-direction: column;
-    gap: 0.625rem;
-    
-
-    span {
-        color: var(--color-gray-1);
-        font-size: 0.75rem;
-        font-weight: 600;
-    }
-
-    div {
-        display: none;
-    }
-
-    div > p {
-        color: var(--color-white);
-        font-size: 1rem;
-        font-weight: 400;
-        margin-top: 1.438rem;
-    }
-
-    @media (min-width: 960px) {
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 2.813rem 0;
-
-        div {
-            display: block;
-        }
-    }
+    gap: 1.25em;
+    margin-top: 1.25em;
 `
 
 export const StyledUserCard = styled.div`
@@ -62,5 +49,9 @@ export const StyledUserCard = styled.div`
     display: flex;
     justify-content: center;
 
-    
+    span {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--color-gray-1);
+    }
 `

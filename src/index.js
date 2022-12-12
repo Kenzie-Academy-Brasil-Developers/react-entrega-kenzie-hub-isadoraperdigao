@@ -8,6 +8,7 @@ import { GlobalStyle } from './styles/globalStyles/style';
 import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import { Providers } from './contexts/Providers';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -27,7 +28,9 @@ root.render(
         pauseOnHover
         theme="light"
       />
-      <App />
+      <Providers>
+        <App />
+      </Providers>
     </BrowserRouter>
   </React.StrictMode>
 );
