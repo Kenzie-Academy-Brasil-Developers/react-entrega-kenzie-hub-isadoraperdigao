@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledAddModalBox = styled.div`
+export const StyledEditModalBox = styled.div`
     width: 90%;
     max-width: 369px;
     background-color: var(--color-gray-3);
@@ -31,5 +31,11 @@ export const StyledAddModalBox = styled.div`
         display: flex;
         flex-direction: column;
         gap: 1em;
+    }
+
+    form > div {
+        display: flex;
+        gap: 1em;
+        justify-content: space-between;
     }
 `

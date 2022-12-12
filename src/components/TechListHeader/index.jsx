@@ -1,21 +1,16 @@
 import { useContext } from "react"
-import { api } from "../../api/api"
-import { UserContext } from "../../contexts/UserContext"
+import { TechContext } from "../../contexts/TechContext"
 import { SmallGrayButton } from "../SmallGrayButton"
 import { StyledTechListHeader } from "./style"
 
 export const TechListHeader = () => {
-    const {user} = useContext(UserContext)
-    const userTechList = user.techs
+    const {openModal} = useContext(TechContext)
 
-    const addTechToList = () => {
-        
-    }
 
     return (
         <StyledTechListHeader>
             <h2>Tecnologias</h2>
-            <SmallGrayButton/>
+            <SmallGrayButton action={openModal}/>
         </StyledTechListHeader>
     )
 }

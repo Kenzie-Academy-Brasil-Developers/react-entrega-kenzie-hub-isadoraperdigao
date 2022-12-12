@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { api } from "../api/api";
+import { api, setAuthHeader, testVar, changeTestVar } from "../api/api";
 
 export const UserContext = createContext({})
 
@@ -56,17 +56,15 @@ export const UserProvider = ({children}) => {
     const userLogin = async (formData) => {
         try {
             const responseLogin = await api.post("sessions", formData)
-            const {token, user: userResponse} = responseLogin.data
-            
-            setUser(userResponse)
-            api.defaults.headers.common.authorization = `Bearer ${token}`
+            const {token, user: userResponse} = await responseLogin.data
 
             toast.success(responseLogin.data.message)
-
+            
             localStorage.setItem("@TOKEN", token)
             localStorage.setItem("@USERID", userResponse.id)
-
-            navigate(`/dashboard/${user.name}`)
+            
+            setUser(userResponse)
+            navigate(`/dashboard/${userResponse.name}`)
 
         } catch (error) {
             toast.error(error.response.data.message)
@@ -80,7 +78,16 @@ export const UserProvider = ({children}) => {
     }
 
     return (
-        <UserContext.Provider value={{user, setUser, userRegister, userLogin, loading, token, backToLoginAction}}>
+        <UserContext.Provider value={{
+            user, 
+            setUser, 
+            userRegister, 
+            userLogin, 
+            loading, 
+            token, 
+            backToLoginAction, 
+            }}
+        >
             {children}
         </UserContext.Provider>
     )

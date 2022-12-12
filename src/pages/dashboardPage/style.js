@@ -17,6 +17,20 @@ export const StyledDashboardHeader = styled.header`
     align-items: center;  
     margin-top: 1.75rem;
 `
+export const StyledDashboardUserContentContainer = styled.div`
+     width: 90%;
+    max-width: 960px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25em;
+    margin-top: 1.25em;
+
+    @media (min-width: 960px) {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+`
 
 export const StyledDashboardContentContainer = styled.div`
     width: 90%;
